@@ -14,6 +14,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Data Collection',
-        home: const HomeScreen());
+        home:  HomeScreen());
   }
 }

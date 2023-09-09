@@ -8,25 +8,172 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String PlotNo = "2";
+  String RangeNo = "3";
+  String PlantNo = "4";
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-
-        backgroundColor:Colors.blue,
-        title: Center(
-          child: const Text("Data collection App",
-          style: TextStyle(
-            fontSize: 12,
-          ),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Center(
+              child: const Text(
+            "Data collection App",
+            style: TextStyle(
+              fontSize: 12,
+            ),
           )),
-      ),
-      body:const Column(children: [
-        Text("welcome to programming")
-
-      ],)
-
-       
-    );
+        ),
+        body: Column(
+          children: [
+            Text(
+              "Select Plant Number:",
+              style: TextStyle(color: Colors.blue),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.remove_circle_outline_rounded),
+                onPressed: () {},
+              ),
+              SizedBox(
+                height: 30,
+                width: 200,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Colors.blue, // Border color
+                      width: 2, // Border width
+                    ), // Set the border radius to 4
+                  ),
+                  child: Center(
+                      child: Text(
+                    PlotNo,
+                    style: TextStyle(color: Colors.blue),
+                  )),
+                ),
+              ),
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.add_circle_outline_outlined),
+                onPressed: () {},
+              ),
+            ]),
+            SizedBox(
+              height: 4.0,
+            ),
+            Text(
+              "Select Range Number:",
+              style: TextStyle(color: Colors.blue),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.remove_circle_outline_rounded),
+                onPressed: () {},
+              ),
+              SizedBox(
+                height: 30,
+                width: 200,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Colors.blue, // Border color
+                      width: 2, // Border width
+                    ), // Set the border radius to 4
+                  ),
+                  child: Center(
+                      child:
+                          Text(RangeNo, style: TextStyle(color: Colors.blue))),
+                ),
+              ),
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.add_circle_outline_outlined),
+                onPressed: () {},
+              ),
+            ]),
+            SizedBox(
+              height: 4.0,
+            ),
+            Text(
+              "Select Plant Number:",
+              style: TextStyle(color: Colors.blue),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.remove_circle_outline_rounded),
+                onPressed: () {},
+              ),
+              SizedBox(
+                height: 30,
+                width: 200,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Colors.blue, // Border color
+                      width: 2, // Border width
+                    ), // Set the border radius to 4
+                  ),
+                  child: Center(
+                      child: Text(
+                    PlantNo,
+                    style: TextStyle(color: Colors.blue),
+                  )),
+                ),
+              ),
+              IconButton(
+                color: Colors.blue,
+                iconSize: 30.0,
+                icon: Icon(Icons.add_circle_outline_outlined),
+                onPressed: () {},
+              ),
+            ]),
+            SizedBox(height: 20),
+            SizedBox(
+              // height:60,
+               width:200,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0), // Adjust the radius as needed
+              ),
+            ),
+                onPressed: () {},
+                child: Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0), // Adjust the radius as needed
+                ),
+              ),
+                onPressed: () {},
+                child: Text(
+                  "Submit",
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }
