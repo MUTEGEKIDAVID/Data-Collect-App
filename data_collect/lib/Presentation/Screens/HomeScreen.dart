@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Operations obj = Operations(plantNo: 0, plotNo: 0, rangeNo: 0);
 
-  File? _imageFile;
+   File? _imageFile;
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: ImageSource.camera);
@@ -175,6 +175,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
             ]),
             SizedBox(height: 20),
+
+            _imageFile!=null ? Image.file(_imageFile!, width:160, height:160, fit: BoxFit.cover): 
+            SizedBox(
+              width:200,
+              height:60,
+              child: ColoredBox(color: Colors.white,
+              child: Center(child: Text("take plant image")),
+              
+              ),
+            ),
+             SizedBox(
+              height: 20,
+            ),
             SizedBox(
               // height:60,
               width: 200,
