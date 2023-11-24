@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:data_collect/Data/user.dart';
+import 'package:data_collect/Data/user_sheets_api.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/plant_no_cubit.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/plot_no_cubit_cubit.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/range_no_cubit.dart';
@@ -19,6 +21,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Operations obj = Operations(plantNo: 0, plotNo: 0, rangeNo: 0);
 
+  static int? RangeNO1;
+  static int? plotNO1;
+  static int? plantNO1;
+
   File? _imageFile;
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -35,12 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.green,
           title: Center(
               child: const Text(
             "Data collection App",
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 20,
+              fontStyle: FontStyle.normal,
+
             ),
           )),
         ),
@@ -48,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Text(
               "Select Plot Number:",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.green[900]),
             ),
             MultiBlocListener(
               listeners: [
@@ -82,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                        color: Colors.blue,
+                        color: Colors.green[900],
                         iconSize: 30.0,
                         icon: Icon(Icons.remove_circle_outline_rounded),
                         onPressed: () {
@@ -98,23 +106,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
-                            color: Colors.blue, // Border color
+                            color: Colors.green, // Border color
                             width: 2, // Border width
                           ), // Set the border radius to 4
                         ),
                         child: Center(child:
                             BlocBuilder<PlotNoCubitCubit, PlotNoCubitState>(
                           builder: (context, state) {
+                            plotNO1 = state.plotNo;
                             return Text(
                               '${state.plotNo}',
-                              style: TextStyle(color: Colors.blue),
+                              style: TextStyle(color: Colors.green[900]),
                             );
                           },
                         )),
                       ),
                     ),
                     IconButton(
-                        color: Colors.blue,
+                        color: Colors.green[900],
                         iconSize: 30.0,
                         icon: Icon(Icons.add_circle_outline_outlined),
                         onPressed: () {
@@ -130,11 +139,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Text(
               "Select Range Number:",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.green[900]),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               IconButton(
-                  color: Colors.blue,
+                  color: Colors.green[900],
                   iconSize: 30.0,
                   icon: Icon(Icons.remove_circle_outline_rounded),
                   onPressed: () {
@@ -149,20 +158,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
-                      color: Colors.blue, // Border color
+                      color: Colors.green, // Border color
                       width: 2, // Border width
                     ), // Set the border radius to 4
                   ),
                   child: Center(child: BlocBuilder<RangeNoCubit, RangeNoState>(
                     builder: (context, state) {
+                      RangeNO1 = state.rangeNo;
                       return Text('${state.rangeNo}',
-                          style: TextStyle(color: Colors.blue));
+                          style: TextStyle(color: Colors.green[900]));
                     },
                   )),
                 ),
               ),
               IconButton(
-                color: Colors.blue,
+                color: Colors.green[900],
                 iconSize: 30.0,
                 icon: Icon(Icons.add_circle_outline_outlined),
                 onPressed: () {
@@ -177,11 +187,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Text(
               "Select Plant Number:",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.green[900]),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               IconButton(
-                color: Colors.blue,
+                color: Colors.green[900],
                 iconSize: 30.0,
                 icon: Icon(Icons.remove_circle_outline_rounded),
                 onPressed: () {
@@ -197,22 +207,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
-                      color: Colors.blue, // Border color
+                      color: Colors.green, // Border color
                       width: 2, // Border width
                     ), // Set the border radius to 4
                   ),
                   child: Center(child: BlocBuilder<PlantNoCubit, PlantNoState>(
                     builder: (context, state) {
+                      plantNO1 = state.plantNo;
                       return Text(
                         '${state.plantNo}',
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: Colors.green[900]),
                       );
                     },
                   )),
                 ),
               ),
               IconButton(
-                  color: Colors.blue,
+                  color: Colors.green[900],
                   iconSize: 30.0,
                   icon: Icon(Icons.add_circle_outline_outlined),
                   onPressed: () {
@@ -249,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: _pickImage,
                 child: Icon(
                   Icons.camera_alt_outlined,
-                  color: Colors.blue,
+                  color: Colors.green[900],
                 ),
               ),
             ),
@@ -265,21 +276,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         8.0), // Adjust the radius as needed
                   ),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  final user = {
+                    UserFields.RangeNo: RangeNO1,
+                    UserFields.PlotNo: plotNO1,
+                    UserFields.PlantNo: plantNO1,
+                    UserFields.image: '$_imageFile'
+                  };
+                  await UserSheetsApi.insert([user]);
                   const snackBar = SnackBar(
                     content: Center(child: Text('Data uploaded successfully')),
-                    backgroundColor: Colors.blueAccent,
+                    backgroundColor: Colors.green,
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  int p = obj.plotNo;
-                  int pl = obj.plantNo;
-                  int range = obj.rangeNo;
-                  print(p);
-                  print(pl);
                 },
                 child: Text(
                   "Submit",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.green[900]),
                 ),
               ),
             )

@@ -1,3 +1,4 @@
+import 'package:data_collect/Data/user_sheets_api.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/plant_no_cubit.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/plot_no_cubit_cubit.dart';
 import 'package:data_collect/Logic%20layer/Functional%20logic/cubit/range_no_cubit.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserSheetsApi.init();
   runApp(const MyApp());
 }
 
